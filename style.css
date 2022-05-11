@@ -1,0 +1,104 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    color: rgb(27, 27, 27);
+    padding: 1em 0;
+    background-color: rgb(247, 247, 247);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Roboto', monospace;
+}
+
+#search-box {
+    width: 90%;
+    display: flex;
+    gap: 0.5em;
+    align-items: center;
+    justify-content: center;
+}
+
+#search-box input {
+    padding: 0.5em 1em;
+    background-color: rgb(235, 235, 235);
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+}
+
+#products-table {
+    width: 90%;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;    
+}
+
+.item-row {
+    background-color: rgb(235, 235, 235);
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+.row-header {
+    display: flex;
+}
+
+.row-delete {
+    height: 1.5em;
+    width: 1.5em;
+    padding: 0.3em;
+    color: rgb(231, 231, 231);
+    background-color: rgb(180, 0, 0);
+    border: none;
+    font-weight: 900;
+    cursor: pointer;
+    transition: 0.8s;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.row-delete:hover {
+    background-color: rgb(231, 231, 231);
+    color: rgb(180, 0, 0);
+    transition: 0.6s;
+}
+
+.item-row p {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.item-row input {
+    padding: 0.4em 1em;
+    width: 80%;
+    border: none;
+    border-radius: 10px;
+}
+
+.row-update {
+    padding: 0.3em;
+    color: rgb(231, 231, 231);
+    background-color: rgb(180, 0, 0);
+    border: none;
+    font-weight: 900;
+    cursor: pointer;
+    transition: 0.8s;
+    border-radius: 0px 0px 10px 10px;
+}
+
+.row-update:hover {
+    background-color: rgb(231, 231, 231);
+    color: rgb(180, 0, 0);
+    transition: 0.6s;
+}
