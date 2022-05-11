@@ -3,6 +3,7 @@ let response = {}
 const tableElements = document.getElementById('products-table')
 const searchInput = document.getElementById('search-input')
 
+
 const getApi = async () => {
     const responseFull = await axios.get(url)
     response = responseFull.data
