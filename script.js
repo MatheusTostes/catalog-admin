@@ -39,7 +39,6 @@ const searchItems = () => {
     tableElements.innerHTML = ''
     populateItems(responseFiltered)
 }
-
 searchInput.addEventListener('input', searchItems)
 
 const productUpdateForm = (event) => {
