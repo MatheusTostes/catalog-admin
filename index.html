@@ -17,6 +17,30 @@
         Painel Admin
     </h1>
 
+    <div id="create-product-box">
+        <div class='row-header'>
+            <p>Novo produto</p>
+            <button id='empty-create'>Limpar Campos</button>
+        </div>
+        <form>
+            <p>nome: <input class='product-name' required></p>
+            <p>preço: <input type="number" class='product-price' value=0 required></p>
+            <p>descrição: <input class='product-description' required></p>
+            <p>url da imagem: <input class='product-image' required></p>
+            <p>categoria: <select class='product-category' required>
+                <option value="lanches">Lanches</option>
+                <option value="porções">Porções</option>
+                <option value="bebidas">Bebidas</option>
+                <option value="sobremesas">Sobremesas</option>
+            </select></p>
+            <p>promoção: <select class='product-promo' required>
+                <option value="y">sim</option>
+                <option value="n">não</option>
+            </select></p>
+            <input type="submit" class='row-update' id='btn-product-create'>
+        </form>
+    </div>
+
     <div id="search-box">
         <p>Buscar: </p>
         <input id='search-input' type="text">

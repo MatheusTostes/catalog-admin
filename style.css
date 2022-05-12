@@ -13,6 +13,29 @@ body {
     font-family: 'Roboto', monospace;
 }
 
+#btn-create-product {
+    position: fixed;
+    right: 1em;
+    width: 2em;
+    height: 2em;
+    color: green;
+    background-color: transparent;
+    border: 1px solid green;
+    box-shadow: 0 0 10px rgba(0, 255, 13, 0.5);
+    transition: 0.7s;
+    cursor: pointer;
+}
+
+#btn-create-product:hover {
+    transform: scale(1.1);
+    transition: 0.3s;
+}
+
+#create-product-box {
+    width: 50%;
+    margin: 1em;
+}
+
 #search-box {
     width: 90%;
     display: flex;
@@ -37,7 +60,14 @@ body {
     gap: 1em;    
 }
 
-.item-row {
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    align-items: center;
+}
+
+.item-row, #create-product-box {
     background-color: rgb(235, 235, 235);
     padding: 1em;
     display: flex;
@@ -49,7 +79,7 @@ body {
     display: flex;
 }
 
-.row-delete {
+.row-delete, #empty-create {
     height: 1.5em;
     width: 1.5em;
     padding: 0.3em;
@@ -66,20 +96,27 @@ body {
     text-align: center;
 }
 
-.row-delete:hover {
+#empty-create {
+    width: auto;
+    line-height: 0.8em;
+    font-size: 0.7em;
+    padding: 1em;
+}
+
+.row-delete:hover, #empty-create:hover {
     background-color: rgb(231, 231, 231);
     color: rgb(180, 0, 0);
     transition: 0.6s;
 }
 
-.item-row p {
+.item-row p, #create-product-box p {
     width: 100%;
     display: flex;
     justify-content: space-between;
-
+    font-weight: 500;
 }
 
-.item-row input {
+.item-row input, #create-product-box input, select, option {
     padding: 0.4em 1em;
     width: 80%;
     border: none;
