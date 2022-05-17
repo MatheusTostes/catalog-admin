@@ -10,6 +10,10 @@ const getApi = async () => {
     response = responseFull.data
 }
 
+const defineSelected = (category, value) => {
+    return category === value ? 'selected' : null
+}
+
 const populateItems = async (data) => {
     data.map(item => {
         let product = `
@@ -26,10 +30,10 @@ const populateItems = async (data) => {
                     <p>url da imagem: <input class='product-image' value=${item.image} required></p>
                     <p>categoria: 
                         <select class='product-category' value='${item.category}' required>
-                            <option value="lanches" ${item.category === 'lanches' ? 'selected' : null}>Lanches</option>
-                            <option value="porções" ${item.category === 'porções' ? 'selected' : null}>Porções</option>
-                            <option value="bebidas" ${item.category === 'bebidas' ? 'selected' : null}>Bebidas</option>
-                            <option value="sobremesas" ${item.category === 'sobremesas' ? 'selected' : null}>Sobremesas</option>
+                            <option value="lanches" ${defineSelected(item.category, 'lanches')}>Lanches</option>
+                            <option value="porções" ${defineSelected(item.category, 'porções')}>Porções</option>
+                            <option value="bebidas" ${defineSelected(item.category, 'bebidas')}>Bebidas</option>
+                            <option value="sobremesas" ${defineSelected(item.category, 'sobremesas')}>Sobremesas</option>
                         </select>
                     </p>
                     <p>promoção: 
