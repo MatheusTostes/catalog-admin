@@ -19,19 +19,17 @@ const populateItems = async (data) => {
                     <button class='row-delete' onCLick='deleteProduct(event)'>X</button>
                 </div>
 
-                
-
                 <form>
-                    <p>nome: <input class='product-name' value=${item.name} required></p>
+                    <p>nome: <input class='product-name' value='${item.name}' required></p>
                     <p>preço: <input type="number" class='product-price' value=${item.price} required></p>
                     <p>descrição: <input class='product-description' value='${item.description}' required></p>
                     <p>url da imagem: <input class='product-image' value=${item.image} required></p>
                     <p>categoria: 
-                        <select class='product-category' value=${item.category} required>
-                            <option value="lanches">Lanches</option>
-                            <option value="porções">Porções</option>
-                            <option value="bebidas">Bebidas</option>
-                            <option value="sobremesas">Sobremesas</option>
+                        <select class='product-category' value='${item.category}' required>
+                            <option value="lanches" ${item.category === 'lanches' ? 'selected' : null}>Lanches</option>
+                            <option value="porções" ${item.category === 'porções' ? 'selected' : null}>Porções</option>
+                            <option value="bebidas" ${item.category === 'bebidas' ? 'selected' : null}>Bebidas</option>
+                            <option value="sobremesas" ${item.category === 'sobremesas' ? 'selected' : null}>Sobremesas</option>
                         </select>
                     </p>
                     <p>promoção: 
@@ -42,6 +40,7 @@ const populateItems = async (data) => {
                     </p>
                     <input type="submit" class='row-update' onClick='productUpdateForm(event)'>
                  </form>
+
             </div>
         `
         tableElements.insertAdjacentHTML('beforeend', product)
@@ -49,7 +48,7 @@ const populateItems = async (data) => {
 }
 
 const searchItems = () => {
-    const searchValue = searchInput.value
+    const searchValue = searchInput.value.toLowerCase()
 
     const responseFiltered = response.filter((item) => {
         return item.name.includes(searchValue)
@@ -64,9 +63,9 @@ const productUpdateForm = (event) => {
     event.preventDefault()
     const productElement = event.target.parentElement.parentElement
     const product_id = parseInt(productElement.getElementsByClassName("product-id")[0].innerText)
-    const name = productElement.getElementsByClassName("product-name")[0].value
+    const name = productElement.getElementsByClassName("product-name")[0].value.toLowerCase()
     const price = productElement.getElementsByClassName("product-price")[0].value
-    const description = productElement.getElementsByClassName("product-description")[0].value
+    const description = productElement.getElementsByClassName("product-description")[0].value.toLowerCase()
     const image = productElement.getElementsByClassName("product-image")[0].value
     const category = productElement.getElementsByClassName("product-category")[0].value
     const promo = productElement.getElementsByClassName("product-promo")[0].value
@@ -95,9 +94,9 @@ const deleteProduct = (event) => {
 const createProduct = async (event) => {
     event.preventDefault()
     const productElement = event.target.parentElement
-    const name = productElement.getElementsByClassName("product-name")[0].value
+    const name = productElement.getElementsByClassName("product-name")[0].value.toLowerCase()
     const price = productElement.getElementsByClassName("product-price")[0].value
-    const description = productElement.getElementsByClassName("product-description")[0].value
+    const description = productElement.getElementsByClassName("product-description")[0].value.toLowerCase()
     const image = productElement.getElementsByClassName("product-image")[0].value
     const category = productElement.getElementsByClassName("product-category")[0].value
     const promo = productElement.getElementsByClassName("product-promo")[0].value
