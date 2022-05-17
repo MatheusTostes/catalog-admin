@@ -38,8 +38,8 @@ const populateItems = async (data) => {
                     </p>
                     <p>promoção: 
                         <select class='product-promo' value=${item.promo} required>
-                            <option value="y">sim</option>
-                            <option value="n">não</option>
+                            <option value="y" ${defineSelected(item.promo, 'y')}>sim</option>
+                            <option value="n" ${defineSelected(item.promo, 'n')}>não</option>
                         </select>
                     </p>
                     <input type="submit" class='row-update' onClick='productUpdateForm(event)'>
