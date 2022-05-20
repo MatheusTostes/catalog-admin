@@ -6,7 +6,12 @@ const btnCreateProduct = document.getElementById('btn-product-create')
 const btnClearInputs = document.getElementById('empty-create')
 
 const getApi = async () => {
-    const responseFull = await axios.get(url)
+    const token = localStorage.getItem('x-access-token')
+    const responseFull = await axios.get(url, {
+        headers: {
+            'x-access-token': token
+        }
+    })
     response = responseFull.data
 }
 
