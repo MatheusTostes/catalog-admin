@@ -1,18 +1,32 @@
 const url = 'https://catalognodejs2022-matheustostes.vercel.app/products/'
+const urlLogin = 'https://catalog-admin-matheustostes.vercel.app'
 let response = {}
 const tableElements = document.getElementById('products-table')
 const searchInput = document.getElementById('search-input')
 const btnCreateProduct = document.getElementById('btn-product-create')
 const btnClearInputs = document.getElementById('empty-create')
+const btnLogout = document.getElementById('btn-logout')
+const token = localStorage.getItem('x-access-token')
+const key = 'fbedee739d58259a8a3b3c07ce998d43'
 
 const getApi = async () => {
-    const token = localStorage.getItem('x-access-token')
     const responseFull = await axios.get(url, {
         headers: {
             'x-access-token': token
         }
     })
+    .catch((err) => {
+        alert("Não conectado");
+        window.location.href = urlLogin
+        return
+    })
+
     response = responseFull.data
+    if (response) {
+        console.log('logado');
+    } else {
+        console.log('deslogado');
+    }
 }
 
 const defineSelected = (category, value) => {
@@ -33,6 +47,7 @@ const populateItems = async (data) => {
                     <p>preço: <input type="number" class='product-price' value=${item.price} required></p>
                     <p>descrição: <input class='product-description' value='${item.description}' required></p>
                     <p>url da imagem: <input class='product-image' value=${item.image} required></p>
+                    <input type="file" id="input-img-file" onchange="uploadImage(event)" accept="image/*">
                     <p>categoria: 
                         <select class='product-category' value='${item.category}' required>
                             <option value="lanches" ${defineSelected(item.category, 'lanches')}>Lanches</option>
@@ -87,7 +102,11 @@ const productUpdateForm = (event) => {
 const updateProduct = (product_id, data) => {
     const urlProduct =  url+product_id
     
-    axios.put(urlProduct, data)
+    axios.put(urlProduct, data, {
+        headers: {
+            'x-access-token': token
+        }
+    })
 }
 
 const deleteProduct = (event) => {
@@ -96,7 +115,11 @@ const deleteProduct = (event) => {
 
     const urlProduct =  url+product_id
     
-    axios.delete(urlProduct)
+    axios.delete(urlProduct, {
+        headers: {
+            'x-access-token': token
+        }
+    })
     product.remove()
 }
 
@@ -113,7 +136,11 @@ const createProduct = async (event) => {
     const data = { name, price, description, image, category, promo }
 
     if (name !== '' & price !== '' & description !== '' & image !== '') {
-        await axios.post(url, data)
+        await axios.post(url, data, {
+            headers: {
+                'x-access-token': token
+            }
+        })
     
         tableElements.innerHTML = ''
         await getApi()
@@ -133,6 +160,24 @@ const clearInputs = (event) => {
 }
 btnClearInputs.addEventListener('click', clearInputs)
 
+const clearToken = () => {
+    localStorage.removeItem('x-access-token')
+    alert('Desconectado')
+    window.location.href = urlLogin
+}
+btnLogout.addEventListener('click', clearToken)
+
+const uploadImage = async ({ target }) => {
+    const form = new FormData();
+    form.append("image", target.files[0])
+    console.log(form);
+    const url = `https://api.imgbb.com/1/upload?key=${key}`
+    const response = await axios.post(url, form)
+    const imageUrl = response.data.data.url
+    const formProduct = target.parentElement
+    const imageElement = formProduct.getElementsByClassName('product-image')[0]
+    imageElement.value = imageUrl
+}
 
 window.onload = async () => {
     await getApi()

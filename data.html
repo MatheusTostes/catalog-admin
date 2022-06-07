@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Water+Brush&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="style.css">
+    <title>Catalog Admin</title>
+</head>
+<body>
+    <h1>
+        Painel Admin
+    </h1>
+
+    <button id="btn-logout">Desconectar</button>
+
+    <div id="create-product-box">
+        <div class='row-header'>
+            <p>Novo produto</p>
+            <button id='empty-create'>Limpar Campos</button>
+        </div>
+        <form>
+            <p>nome: <input class='product-name' required></p>
+            <p>preço: <input type="number" class='product-price' value=0 required></p>
+            <p>descrição: <input class='product-description' required></p>
+            <p>url da imagem: <input class='product-image' required></p>
+            <input type="file" id="input-img-file" onchange="uploadImage(event)" accept="image/*">
+            <p>categoria: <select class='product-category' required>
+                <option value="lanches">Lanches</option>
+                <option value="porções">Porções</option>
+                <option value="bebidas">Bebidas</option>
+                <option value="sobremesas">Sobremesas</option>
+            </select></p>
+            <p>promoção: <select class='product-promo' required>
+                <option value="y">sim</option>
+                <option value="n">não</option>
+            </select></p>
+            <input type="submit" class='row-update' id='btn-product-create'>
+        </form>
+    </div>
+
+    <div id="search-box">
+        <p>Buscar: </p>
+        <input id='search-input' type="text">
+    </div>
+
+    <div id="products-table"></div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

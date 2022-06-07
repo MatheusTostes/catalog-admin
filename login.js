@@ -1,10 +1,9 @@
 const urlPost = 'https://catalognodejs2022-matheustostes.vercel.app/login';
-// const urlData = 'https://teste-jwt-matheustostes.vercel.app/clients';
+const urlData = 'https://catalog-admin-matheustostes.vercel.app/data.html';
 const userName = document.getElementById('user-name');
 const userPass = document.getElementById('user-pass');
 const btnLogin = document.getElementById('btn-login');
 const btnData = document.getElementById('btn-dados');
-let token = ''
 
 const sendCredentials = async () => {
   const data = {
@@ -16,6 +15,7 @@ const sendCredentials = async () => {
   })
   const { token } = response.data
   localStorage.setItem('x-access-token',token)
+  window.location.href = urlData
 }
 
 const loginError = () => {
@@ -23,20 +23,3 @@ const loginError = () => {
 }
 
 btnLogin.addEventListener('click', sendCredentials)
-
-const getData = async (token) => {
-  const header = {
-    'x-access-token': token,
-  }
-
-  const teste = localStorage.getItem('x-access-token')
-  // console.log(teste);
-  // const data = await axios.get(urlData, {
-  //   headers: {
-  //     'x-access-token': token
-  //   }
-  // })
-  // console.log(data);
-}
-
-btnData.addEventListener('click', getData(token))
